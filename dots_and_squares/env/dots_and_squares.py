@@ -1,6 +1,6 @@
 from pettingzoo import AECEnv
 
-class DotsAndSquares(AECEnv):
+class raw_env(AECEnv):
     metadata = {
         "name": "dots-and-squares_v0",
     }

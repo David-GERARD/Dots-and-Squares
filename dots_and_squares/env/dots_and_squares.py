@@ -1,4 +1,5 @@
 from pettingzoo import AECEnv
+from backend import Dots_and_squares
 
 class raw_env(AECEnv):
     metadata = {
@@ -6,7 +7,7 @@ class raw_env(AECEnv):
     }
 
     def __init__(self):
-        pass
+        self.game_instance = Dots_and_squares()
 
     def reset(self, seed=None, options=None):
         pass

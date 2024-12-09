@@ -6,8 +6,8 @@ class raw_env(AECEnv):
         "name": "dots-and-squares_v0",
     }
 
-    def __init__(self):
-        self.game_instance = Dots_and_squares()
+    def __init__(self, grid_size=(3,3), n_players=2):
+        self.game_instance = Dots_and_squares(grid_size=grid_size, n_players=n_players)
 
     def reset(self, seed=None, options=None):
         pass
@@ -23,3 +23,10 @@ class raw_env(AECEnv):
 
     def action_space(self, agent):
         return self.action_spaces[agent]
+
+if __name__ == "__main__":
+    env = raw_env()
+    #env.reset()
+    #env.step([0, 1])
+    #env.render()
+    #env.close()

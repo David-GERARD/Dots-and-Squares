@@ -8,9 +8,19 @@ class raw_env(AECEnv):
 
     def __init__(self, grid_size:tuple = (6,6), n_players:int = 2)->None:
         super().__init__()
+
+        # Backend initialization
         self.grid_size = grid_size
         self.n_players = n_players
         self.game_instance = Dots_and_squares(grid_size = self.grid_size, n_players = self.n_players)
+
+        # RL environment initialization
+        self.agents = ["player_" + str(i) for i in range(self.n_players)]
+        self.action_spaces = None # TODO: Define the action spaces
+        self.observation_spaces = None # TODO: Define the observation spaces
+
+        # Rendering initialization
+        self.render_mode = "human"
 
     def reset(self)->None:
         """

@@ -6,11 +6,17 @@ class raw_env(AECEnv):
         "name": "dots-and-squares_v0",
     }
 
-    def __init__(self, grid_size=(3,3), n_players=2):
-        self.game_instance = Dots_and_squares(grid_size=grid_size, n_players=n_players)
+    def __init__(self, grid_size:tuple = (6,6), n_players:int = 2)->None:
+        super().__init__()
+        self.grid_size = grid_size
+        self.n_players = n_players
+        self.game_instance = Dots_and_squares(grid_size = self.grid_size, n_players = self.n_players)
 
-    def reset(self, seed=None, options=None):
-        pass
+    def reset(self)->None:
+        """
+        This method resets the environment to its initial state.
+        """
+        self.game_instance = Dots_and_squares(grid_size = self.grid_size, n_players = self.n_players)
 
     def step(self, actions):
         pass

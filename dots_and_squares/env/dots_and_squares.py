@@ -75,20 +75,15 @@ class raw_env(AECEnv):
         self.action_spaces = {
             name: spaces.Discrete(
                 self.game_instance.rows.size + self.game_instance.columns.size 
-            ) 
-            for name in self.agents
+            ) for name in self.agents
         }
 
         self.observation_spaces = {
             name: spaces.Dict(
                 {
-                    "observation": spaces.Box(
-                        low = 0, 
-                        high = 1,
-                        shape = (self.game_instance.n_rows+1, self.game_instance.n_cols+1, 2), #TODO: verify that in that space an agent does see all the edges of the board
-                        dtype = int
-                    ),
-                    "action_mask": spaces.Box() # TODO: implement
+                "rows": spaces.Box(low=0, high=1, shape=self.game_instance.rows.shape, dtype=int),  # Binary availability of row edges
+                "columns": spaces.Box(low=0, high=1, shape=self.game_instance.columns.shape, dtype=int),  # Binary availability of column edges
+                "squares": spaces.Box(low=-1, high=self.n_players, shape=self.game_instance.squares.shape, dtype=int)  # Ownership of squares, might not be relevant
                 }
             ) for name in self.agents
         }
